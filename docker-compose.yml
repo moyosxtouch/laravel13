@@ -1,0 +1,35 @@
+services:
+    servidor:
+        image: serversideup/php:8.3-cli
+        container_name: mi_servidor_laravel
+        ports:
+            - "8000:8000"
+            - "5173:5173"
+        volumes:
+            - .:/var/www/html
+        working_dir: /var/www/html
+        command: php artisan serve --host=0.0.0.0 --port=8000
+        networks:
+            - red_laravel
+        depends_on:
+            - base_datos
+
+    base_datos:
+        image: mysql:8.0
+        container_name: mi_base_datos_laravel
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: laravel_curso
+        volumes:
+            - datos_db:/var/lib/mysql
+        networks:
+            - red_laravel
+
+networks:
+    red_laravel:
+        driver: bridge
+
+volumes:
+    datos_db:
