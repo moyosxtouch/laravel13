@@ -15,15 +15,16 @@ services:
             - base_datos
 
     base_datos:
-        image: mysql:8.0
-        container_name: mi_base_datos_laravel
+        image: postgres:16-alpine
+        container_name: mi_base_datos_postgres
         ports:
-            - "3306:3306"
+            - "5432:5432"
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: laravel_curso
+            POSTGRES_DB: laravel_curso
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
         volumes:
-            - datos_db:/var/lib/mysql
+            - datos_pg:/var/var/lib/postgresql/data
         networks:
             - red_laravel
 
@@ -32,4 +33,4 @@ networks:
         driver: bridge
 
 volumes:
-    datos_db:
+    datos_pg:
