@@ -1,3 +1,6 @@
+@extends("layouts.base")
+
+@section("content")
 <form class="mt-14 space-y-5" novalidate>
     <div class="flex flex-col gap-2">
         <label class="font-bold text-2xl" for="email">Email</label>
@@ -31,3 +34,4 @@
         class="bg-purple-950 hover:bg-purple-800 w-full p-3 rounded-lg text-white font-bold  text-xl cursor-pointer"
     />
 </form>
+@endsection
