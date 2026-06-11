@@ -22,6 +22,7 @@ return[
     "name.required"=>"El Nombre es obligatorio",
 "email.required"=>"El E-mail es obligatorio",
 "email.email"=>"E-mail no válido",
+"email.unique"=>"El E-mail ya está registrado",
 "password.required"=>"La Contraseña es obligatoria",
 "password.confirmed"=>"Las Contraseñas no coinciden",
 "password.min"=>"La Contraseña debe tener al menos :min caracteres",
@@ -41,7 +42,7 @@ return[
     {
         return [
              "name"=>["required", "string"],
-    "email"=>["required", "email"],
+    "email"=>["required", "email", "unique:users,email"],
     "password"=>["required","confirmed",
     Password::min(8)->letters()->mixedCase()->symbols()->numbers()->uncompromised()
     ]
