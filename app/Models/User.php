@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+// ¡CAMBIA ESTA LÍNEA! Apunta a tu notificación en español:
+use App\Notifications\VerifyEmail;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -16,6 +18,11 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    // Cambiada la "S" por "s" minúscula para que Laravel lo reconozca correctamente
+    public function sendEmailVerificationNotification(){
+        $this->notify(new VerifyEmail);
+    }
 
     /**
      * Get the attributes that should be cast.

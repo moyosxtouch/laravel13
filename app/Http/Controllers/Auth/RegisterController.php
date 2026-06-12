@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SignupRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -17,6 +18,7 @@ class RegisterController extends Controller
     {
 $data=$request->validated();
 //Almacene en la base de datos
-User::create($data);
+$user=User::create($data);
+event(new Registered($user));
     }
 }
