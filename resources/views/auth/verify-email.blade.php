@@ -1,0 +1,7 @@
+@extends("layouts.auth")
+@section ("title")
+Confirma tu Cuenta
+@endsection
+@section("auth-contents")
+<p class="mt-5 text-lg">Tu cuenta fue creada exitosamente. Por favor, confirma tu dirección revisa tu email.</p>
+@endsection
