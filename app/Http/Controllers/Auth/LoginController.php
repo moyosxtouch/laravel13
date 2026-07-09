@@ -18,9 +18,10 @@ class LoginController extends Controller
     {
         $data = $request->validated();
         // Attempt to authenticate the user. If it fails, return with error.
-        if (!Auth::attempt($data)) {
+        if (!Auth::attempt($data, true)) {
             return back()->with("error", "Credenciales incorrectas. Por favor, verifica tu email y contraseña.");
         }
+        return redirect()->route("dashboard");
 
     }
 }
